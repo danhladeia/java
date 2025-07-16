@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java: Classes e Objetos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background-color: #eef2f7;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #fff;
+            padding: 35px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #1a2a3a;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 30px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        .section-box {
+            background-color: #f8faff;
+            border: 1px solid #d0e0ed;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        /* Estilo VS Code Dark Theme */
+        .vscode-container {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .vscode-header {
+            background-color: #2d2d30;
+            padding: 8px 12px;
+            border-bottom: 1px solid #3c3c3c;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+        
+        .vscode-tab {
+            background-color: #2d2d30;
+            color: #cccccc;
+            padding: 6px 12px;
+            margin-right: 2px;
+            border-radius: 4px 4px 0 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .vscode-tab.active {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+        
+        .vscode-code {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            padding: 20px;
+            overflow-x: auto;
+            margin: 0;
+        }
+        
+        /* Syntax highlighting colors - VS Code Dark Theme */
+        .keyword { color: #569cd6; font-weight: bold; }
+        .type { color: #4ec9b0; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; font-style: italic; }
+        .method { color: #dcdcaa; }
+        .variable { color: #9cdcfe; }
+        .number { color: #b5cea8; }
+        .operator { color: #d4d4d4; }
+        .punctuation { color: #d4d4d4; }
+        .class-name { color: #4ec9b0; font-weight: bold; }
+        .modifier { color: #569cd6; }
+        .system-out { color: #4ec9b0; }
+        
+        code {
+            background: #e0e6ed;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            color: #c7254e;
+        }
+        .explanation-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .explanation-list li {
+            background-color: #e6f7ff;
+            border-left: 5px solid #3498db;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        .explanation-list li strong {
+            color: #007bff;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Java: Desvendando Classes e Objetos</h1>
+        <p>Bem-vindo a nossa aula sobre a base da programação Java: **Classes** e **Objetos**. Aqui entenderemos como o Java organiza o código e representa o mundo real!</p>
+
+        <hr>
+
+        <h2>O Essencial: Classes e Objetos</h2>
+        <p>Em Java, quase tudo é um <span class="highlight">Objeto</span>. Um objeto é como uma entidade concreta que possui características e pode realizar ações.</p>
+        <p>Pense na diferença entre um projeto de construção e a casa já construída:</p>
+        <ul>
+            <li>Uma **Classe** é o <span class="highlight">projeto</span>, o <span class="highlight">molde</span>, a <span class="highlight">planta</span>. Ela define o que um objeto terá (quais informações ele guarda) e o que ele pode fazer (quais ações ele pode executar).</li>
+            <li>Um **Objeto** é a <span class="highlight">construção final</span>, uma <span class="highlight">instância concreta</span> desse projeto. Você pode ter várias casas (objetos) a partir da mesma planta (classe), e cada casa terá seus próprios detalhes (número de quartos, cor da parede, etc.).</li>
+        </ul>
+
+        <hr>
+
+        <div class="section-box">
+            <h2>Exemplo 1: A Classe `Livro`</h2>
+            <p>Vamos criar uma classe simples para representar um livro.</p>
+
+            <h3>Código Java: `Livro.java`</h3>
+            <div class="vscode-container">
+                <div class="vscode-header">
+                    <div class="vscode-tab active">Livro.java</div>
+                </div>
+                <pre class="vscode-code"><span class="keyword">public</span> <span class="keyword">class</span> <span class="class-name">Livro</span> <span class="punctuation">{</span>
+    <span class="comment">// Atributos (características) do Livro</span>
+    <span class="type">String</span> <span class="variable">titulo</span> <span class="operator">=</span> <span class="string">"Aventuras de Java"</span><span class="punctuation">;</span>
+    <span class="type">String</span> <span class="variable">autor</span> <span class="operator">=</span> <span class="string">"Programador Anonimo"</span><span class="punctuation">;</span>
+    <span class="type">int</span> <span class="variable">paginas</span> <span class="operator">=</span> <span class="number">300</span><span class="punctuation">;</span>
+
+    <span class="comment">// Método (comportamento) do Livro</span>
+    <span class="keyword">void</span> <span class="method">mostrarDetalhes</span><span class="punctuation">()</span> <span class="punctuation">{</span>
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="string">"Título: "</span> <span class="operator">+</span> <span class="variable">titulo</span><span class="punctuation">);</span>
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="string">"Autor: "</span> <span class="operator">+</span> <span class="variable">autor</span><span class="punctuation">);</span>
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="string">"Páginas: "</span> <span class="operator">+</span> <span class="variable">paginas</span><span class="punctuation">);</span>
+    <span class="punctuation">}</span>
+
+    <span class="comment">// Método principal para testar a classe</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="method">main</span><span class="punctuation">(</span><span class="type">String</span><span class="punctuation">[]</span> <span class="variable">args</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+        <span class="comment">// Criando um objeto (instância) da classe Livro</span>
+        <span class="class-name">Livro</span> <span class="variable">meuLivro</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="class-name">Livro</span><span class="punctuation">();</span> <span class="comment">// meuLivro é agora um objeto real!</span>
+
+        <span class="comment">// Chamando um método do objeto meuLivro</span>
+        <span class="variable">meuLivro</span><span class="punctuation">.</span><span class="method">mostrarDetalhes</span><span class="punctuation">();</span>
+
+        <span class="comment">// Você pode criar outro livro com os mesmos valores padrão</span>
+        <span class="class-name">Livro</span> <span class="variable">outroLivro</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="class-name">Livro</span><span class="punctuation">();</span>
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="string">"\n--- Outro Livro ---"</span><span class="punctuation">);</span>
+        <span class="variable">outroLivro</span><span class="punctuation">.</span><span class="method">mostrarDetalhes</span><span class="punctuation">();</span>
+    <span class="punctuation">}</span>
+<span class="punctuation">}</span></pre>
+            </div>
+
+            <h3>Explicação do Código:</h3>
+            <ul class="explanation-list">
+                <li><strong>`public class Livro { ... }`</strong>: Define a **classe** `Livro`, que serve como molde para todos os livros.</li>
+                <li><strong>`String titulo`, `String autor`, `int paginas`</strong>: São os **atributos** (ou variáveis de instância) da classe. Todo objeto `Livro` criado a partir deste molde terá um título, um autor e um número de páginas.</li>
+                <li><strong>`void mostrarDetalhes() { ... }`</strong>: É um **método** (ou comportamento) que um objeto `Livro` pode executar. Ele imprime no console os detalhes do livro.</li>
+                <li><strong>`Livro meuLivro = new Livro();`</strong>: Esta linha é crucial! Ela **cria um objeto** concreto chamado `meuLivro` a partir do molde `Livro`. `meuLivro` agora tem seus próprios valores para título, autor e páginas.</li>
+                <li><strong>`meuLivro.mostrarDetalhes();`</strong>: Chamamos o método `mostrarDetalhes()` no objeto `meuLivro`, fazendo com que ele exiba suas informações.</li>
+                <li><strong>`Livro outroLivro = new Livro();`</strong>: Mostra que você pode criar **múltiplos objetos** da mesma classe. Cada um é independente, mesmo que no início eles tenham os mesmos valores padrão.</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <div class="section-box">
+            <h2>Exemplo 2: A Classe `Cachorro`</h2>
+            <p>Vamos ver outro exemplo, agora com uma classe para representar um cachorro.</p>
+
+            <h3>Código Java: `Cachorro.java`</h3>
+            <div class="vscode-container">
+                <div class="vscode-header">
+                    <div class="vscode-tab active">Cachorro.java</div>
+                </div>
+                <pre class="vscode-code"><span class="keyword">public</span> <span class="keyword">class</span> <span class="class-name">Cachorro</span> <span class="punctuation">{</span>
+    <span class="comment">// Atributos</span>
+    <span class="type">String</span> <span class="variable">nome</span> <span class="operator">=</span> <span class="string">"Rex"</span><span class="punctuation">;</span>
+    <span class="type">String</span> <span class="variable">raca</span> <span class="operator">=</span> <span class="string">"Labrador"</span><span class="punctuation">;</span>
+    <span class="type">int</span> <span class="variable">idade</span> <span class="operator">=</span> <span class="number">3</span><span class="punctuation">;</span>
+
+    <span class="comment">// Métodos</span>
+    <span class="keyword">void</span> <span class="method">latir</span><span class="punctuation">()</span> <span class="punctuation">{</span>
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="variable">nome</span> <span class="operator">+</span> <span class="string">" diz: Au Au!"</span><span class="punctuation">);</span>
+    <span class="punctuation">}</span>
+
+    <span class="keyword">void</span> <span class="method">dadosDoCachorro</span><span class="punctuation">()</span> <span class="punctuation">{</span>
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="string">"Nome: "</span> <span class="operator">+</span> <span class="variable">nome</span> <span class="operator">+</span> <span class="string">", Raça: "</span> <span class="operator">+</span> <span class="variable">raca</span> <span class="operator">+</span> <span class="string">", Idade: "</span> <span class="operator">+</span> <span class="variable">idade</span> <span class="operator">+</span> <span class="string">" anos."</span><span class="punctuation">);</span>
+    <span class="punctuation">}</span>
+
+    <span class="comment">// Método principal</span>
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="method">main</span><span class="punctuation">(</span><span class="type">String</span><span class="punctuation">[]</span> <span class="variable">args</span><span class="punctuation">)</span> <span class="punctuation">{</span>
+        <span class="comment">// Criando o primeiro objeto Cachorro</span>
+        <span class="class-name">Cachorro</span> <span class="variable">meuCachorro</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="class-name">Cachorro</span><span class="punctuation">();</span>
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="string">"--- Meu Cachorro ---"</span><span class="punctuation">);</span>
+        <span class="variable">meuCachorro</span><span class="punctuation">.</span><span class="method">dadosDoCachorro</span><span class="punctuation">();</span>
+        <span class="variable">meuCachorro</span><span class="punctuation">.</span><span class="method">latir</span><span class="punctuation">();</span>
+
+        <span class="comment">// Criando um segundo objeto Cachorro</span>
+        <span class="class-name">Cachorro</span> <span class="variable">cachorroDoVizinho</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="class-name">Cachorro</span><span class="punctuation">();</span>
+        <span class="variable">cachorroDoVizinho</span><span class="punctuation">.</span><span class="variable">nome</span> <span class="operator">=</span> <span class="string">"Mel"</span><span class="punctuation">;</span> <span class="comment">// Podemos mudar os dados de cada objeto!</span>
+        <span class="variable">cachorroDoVizinho</span><span class="punctuation">.</span><span class="variable">raca</span> <span class="operator">=</span> <span class="string">"Vira-lata"</span><span class="punctuation">;</span>
+        <span class="variable">cachorroDoVizinho</span><span class="punctuation">.</span><span class="variable">idade</span> <span class="operator">=</span> <span class="number">5</span><span class="punctuation">;</span>
+
+        <span class="system-out">System</span><span class="punctuation">.</span><span class="system-out">out</span><span class="punctuation">.</span><span class="method">println</span><span class="punctuation">(</span><span class="string">"\n--- Cachorro do Vizinho ---"</span><span class="punctuation">);</span>
+        <span class="variable">cachorroDoVizinho</span><span class="punctuation">.</span><span class="method">dadosDoCachorro</span><span class="punctuation">();</span>
+        <span class="variable">cachorroDoVizinho</span><span class="punctuation">.</span><span class="method">latir</span><span class="punctuation">();</span>
+    <span class="punctuation">}</span>
+<span class="punctuation">}</span></pre>
+            </div>
+
+            <h3>Explicação do Código:</h3>
+            <ul class="explanation-list">
+                <li><strong>`public class Cachorro { ... }`</strong>: A **classe** `Cachorro` é o modelo para criar instâncias de cachorros.</li>
+                <li><strong>`String nome`, `String raca`, `int idade`</strong>: São os **atributos** que todo cachorro terá.</li>
+                <li><strong>`void latir()` e `void dadosDoCachorro()`</strong>: São os **métodos** que definem o que um objeto `Cachorro` pode fazer (latir e exibir seus dados).</li>
+                <li><strong>`Cachorro meuCachorro = new Cachorro();`</strong>: Cria o primeiro **objeto** `Cachorro`. Ele nasce com os valores padrão (`Rex`, `Labrador`, `3`).</li>
+                <li><strong>`Cachorro cachorroDoVizinho = new Cachorro();`</strong>: Cria um **segundo objeto** `Cachorro`, completamente independente do primeiro.</li>
+                <li><strong>`cachorroDoVizinho.nome = "Mel";`</strong>: Mostra que, depois de criar um objeto, você pode **modificar os valores de seus atributos** individualmente. Essa é a beleza dos objetos: eles são instâncias únicas da classe.</li>
+                <li>Ao chamar os métodos `dadosDoCachorro()` e `latir()` para cada objeto, você verá que eles agem com base nos seus próprios dados.</li>
+            </ul>
+        </div>
+
+        <hr>
+
+        <h2>Conclusão</h2>
+        <p>As **Classes** são os projetos, os modelos que definem a estrutura e o comportamento. Os **Objetos** são as coisas reais, as instâncias concretas criadas a partir desses projetos, cada uma com seus próprios dados, mas seguindo a mesma estrutura definida pela classe.</p>
+        <p>Dominar esse conceito é o primeiro passo para se aprofundar na Programação Orientada a Objetos em Java. Continue praticando e experimentando!</p>
+    </div>
+</body>
+</html>
