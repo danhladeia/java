@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Java - Classes e Objetos</title>
+    <style>
+        @media print {
+            body { font-size: 12pt; line-height: 1.4; }
+            .no-print { display: none; }
+            .page-break { page-break-before: always; }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            font-size: 13px; /* Diminuição da fonte base */
+            line-height: 1.3; /* Diminuição do espaçamento entre linhas */
+        }
+        
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #007acc;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            background: #252526;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #007acc;
+            text-transform: uppercase;
+        }
+        
+        .header p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #cccccc;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            background: #252526;
+            border-radius: 8px;
+            padding: 20px;
+        }
+        
+        .section h2 {
+            background: #007acc;
+            color: white;
+            padding: 12px 15px;
+            border-radius: 4px;
+            margin: -20px -20px 20px -20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .section h3 {
+            color: #4fc3f7;
+            border-bottom: 1px solid #3c3c3c;
+            padding-bottom: 8px;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        
+        .vscode-editor {
+            background: #1e1e1e;
+            border: 1px solid #3c3c3c;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .vscode-header {
+            background: #2d2d30;
+            padding: 8px 15px;
+            border-bottom: 1px solid #3c3c3c;
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+        }
+        
+        .vscode-tab {
+            background: #1e1e1e;
+            color: #cccccc;
+            padding: 6px 12px;
+            border-radius: 4px 4px 0 0;
+            margin-right: 2px;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+        
+        .vscode-tab.active {
+            background: #1e1e1e;
+            color: #ffffff;
+        }
+        
+        .code-content {
+            background: #1e1e1e;
+            padding: 15px;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            color: #d4d4d4;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        .line-numbers {
+            color: #858585;
+            user-select: none;
+            margin-right: 15px;
+            display: inline-block;
+            text-align: right;
+            width: 30px;
+        }
+        
+        .keyword { color: #569cd6; }
+        .string { color: #ce9178; }
+        .comment { color: #6a9955; font-style: italic; }
+        .class-name { color: #4ec9b0; }
+        .method { color: #dcdcaa; }
+        .number { color: #b5cea8; }
+        .operator { color: #d4d4d4; }
+        
+        .explanation {
+            background: #0e2f44;
+            border-left: 4px solid #007acc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            color: #e1f5fe;
+        }
+        
+        .activity-box {
+            background: #252526;
+            border: 2px solid #007acc;
+            border-radius: 8px;
+            padding: 0;
+            margin: 30px 0;
+            page-break-inside: avoid;
+        }
+        
+        .activity-title {
+            background: #007acc;
+            color: white;
+            padding: 15px 20px;
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 6px 6px 0 0;
+        }
+        
+        .activity-content {
+            padding: 20px;
+        }
+        
+        .specs {
+            margin: 15px 0;
+            color: #cccccc;
+        }
+        
+        .specs h4 {
+            margin: 20px 0 10px 0;
+            color: #4fc3f7;
+            font-size: 15px;
+        }
+        
+        .specs ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        
+        .specs li {
+            margin: 5px 0;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .specs strong {
+            color: #dcdcaa;
+        }
+
+        /* Nova tabela de especificações */
+        .specs table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .specs th, .specs td {
+            border: 1px solid #3c3c3c;
+            padding: 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        .specs th {
+            background-color: #007acc;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .specs td {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            font-size: 13px;
+        }
+        .specs ul.inline-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .specs ul.inline-list li {
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+        
+        .answer-space {
+            background: #1e1e1e;
+            border: 2px dashed #007acc;
+            border-radius: 4px;
+            min-height: 700px; /* Aumento significativo do espaço para código */
+            margin: 20px 0;
+            padding: 20px;
+            position: relative;
+            font-size: 12px; /* Redução do tamanho da fonte dentro da área de resposta */
+        }
+        
+        .answer-space::before {
+            content: "// Cole seu código Java aqui";
+            color: #6a9955;
+            font-family: 'Consolas', monospace;
+            font-style: italic;
+            display: block;
+            margin-bottom: 15px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: #858585;
+            background: #252526;
+            padding: 15px;
+            border-radius: 4px;
+        }
+        
+        .highlight-box {
+            background: #2d3748;
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .highlight-box h4 {
+            color: #90cdf4;
+            margin-top: 0;
+        }
+        
+        @media print {
+            body { 
+                background: white !important;
+                color: black !important;
+            }
+            
+            .header, .section, .activity-box {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .vscode-editor, .code-content {
+                background: #f8f8f8 !important;
+                color: black !important;
+            }
+            
+            .vscode-header, .vscode-tab {
+                background: #e0e0e0 !important;
+                color: black !important;
+            }
+            
+            .activity-title {
+                background: #333 !important;
+                color: white !important;
+            }
+            
+            .answer-space {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .keyword, .string, .comment, .class-name, .method, .number {
+                color: black !important;
+            }
+            
+            .explanation {
+                background: #f0f8ff !important;
+                color: black !important;
+            }
+
+            .specs th, .specs td {
+                border: 1px solid #ccc;
+            }
+            .specs th {
+                background-color: #eee !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Programação Orientada a Objetos - Java</h1>
+        <p><strong>Atividade Prática: Classes e Objetos com Múltiplos Métodos</strong></p>
+    </div>
+
+    <div class="section">
+        <h2>📚 Parte 1: Explicação Teórica</h2>
+        
+        <h3>Como Funciona um Código com 2 Objetos e 4 Métodos</h3>
+        
+        <div class="explanation">
+            <strong>💡 Conceito:</strong> Quando criamos múltiplos objetos da mesma classe, cada um mantém seu próprio estado (valores dos atributos) de forma independente. Os métodos definem as ações que cada objeto pode realizar.
+        </div>
+
+        <h3>Exemplo Prático: Classe Conta Bancária</h3>
+        
+        <div class="vscode-editor">
+            <div class="vscode-header">
+                <div class="vscode-tab active">ContaBancaria.java</div>
+                <div class="vscode-tab">TesteConta.java</div>
+            </div>
+            <div class="code-content"><span class="line-numbers">1</span><span class="keyword">class</span> <span class="class-name">ContaBancaria</span> {
+<span class="line-numbers">2</span>    <span class="comment">// Atributos da classe</span>
+<span class="line-numbers">3</span>    <span class="class-name">String</span> titular;
+<span class="line-numbers">4</span>    <span class="keyword">double</span> saldo;
+<span class="line-numbers">5</span>    <span class="class-name">String</span> numeroConta;
+<span class="line-numbers">6</span>    <span class="keyword">boolean</span> ativa;
+<span class="line-numbers">7</span>    
+<span class="line-numbers">8</span>    <span class="comment">// Método 1: Depositar dinheiro</span>
+<span class="line-numbers">9</span>    <span class="keyword">void</span> <span class="method">depositar</span>(<span class="keyword">double</span> valor) {
+<span class="line-numbers">10</span>        <span class="keyword">if</span> (valor > <span class="number">0</span> && ativa) {
+<span class="line-numbers">11</span>            saldo += valor;
+<span class="line-numbers">12</span>            System.out.<span class="method">println</span>(<span class="string">"Depósito de R$ "</span> + valor + <span class="string">" realizado."</span>);
+<span class="line-numbers">13</span>            System.out.<span class="method">println</span>(<span class="string">"Novo saldo: R$ "</span> + saldo);
+<span class="line-numbers">14</span>        } <span class="keyword">else</span> {
+<span class="line-numbers">15</span>            System.out.<span class="method">println</span>(<span class="string">"Valor inválido ou conta inativa."</span>);
+<span class="line-numbers">16</span>        }
+<span class="line-numbers">17</span>    }
+<span class="line-numbers">18</span>    
+<span class="line-numbers">19</span>    <span class="comment">// Método 2: Sacar dinheiro</span>
+<span class="line-numbers">20</span>    <span class="keyword">void</span> <span class="method">sacar</span>(<span class="keyword">double</span> valor) {
+<span class="line-numbers">21</span>        <span class="keyword">if</span> (valor > <span class="number">0</span> && ativa && saldo >= valor) {
+<span class="line-numbers">22</span>            saldo -= valor;
+<span class="line-numbers">23</span>            System.out.<span class="method">println</span>(<span class="string">"Saque de R$ "</span> + valor + <span class="string">" realizado."</span>);
+<span class="line-numbers">24</span>            System.out.<span class="method">println</span>(<span class="string">"Novo saldo: R$ "</span> + saldo);
+<span class="line-numbers">25</span>        } <span class="keyword">else</span> {
+<span class="line-numbers">26</span>            System.out.<span class="method">println</span>(<span class="string">"Saque não autorizado."</span>);
+<span class="line-numbers">27</span>        }
+<span class="line-numbers">28</span>    }
+<span class="line-numbers">29</span>    
+<span class="line-numbers">30</span>    <span class="comment">// Método 3: Verificar status da conta</span>
+<span class="line-numbers">31</span>    <span class="keyword">void</span> <span class="method">verificarStatus</span>() {
+<span class="line-numbers">32</span>        <span class="keyword">if</span> (ativa) {
+<span class="line-numbers">33</span>            System.out.<span class="method">println</span>(<span class="string">"Conta ativa - Titular: "</span> + titular);
+<span class="line-numbers">34</span>            System.out.<span class="method">println</span>(<span class="string">"Saldo atual: R$ "</span> + saldo);
+<span class="line-numbers">35</span>        } <span class="keyword">else</span> {
+<span class="line-numbers">36</span>            System.out.<span class="method">println</span>(<span class="string">"Conta inativa."</span>);
+<span class="line-numbers">37</span>        }
+<span class="line-numbers">38</span>    }
+<span class="line-numbers">39</span>    
+<span class="line-numbers">40</span>    <span class="comment">// Método 4: Transferir para outra conta</span>
+<span class="line-numbers">41</span>    <span class="keyword">void</span> <span class="method">transferir</span>(<span class="class-name">ContaBancaria</span> contaDestino, <span class="keyword">double</span> valor) {
+<span class="line-numbers">42</span>        <span class="keyword">if</span> (valor > <span class="number">0</span> && ativa && saldo >= valor && contaDestino.ativa) {
+<span class="line-numbers">43</span>            <span class="keyword">this</span>.saldo -= valor;
+<span class="line-numbers">44</span>            contaDestino.saldo += valor;
+<span class="line-numbers">45</span>            System.out.<span class="method">println</span>(<span class="string">"Transferência de R$ "</span> + valor + <span class="string">" realizada."</span>);
+<span class="line-numbers">46</span>            System.out.<span class="method">println</span>(<span class="string">"De: "</span> + <span class="keyword">this</span>.titular + <span class="string">" Para: "</span> + contaDestino.titular);
+<span class="line-numbers">47</span>        } <span class="keyword">else</span> {
+<span class="line-numbers">48</span>            System.out.<span class="method">println</span>(<span class="string">"Transferência não autorizada."</span>);
+<span class="line-numbers">49</span>        }
+<span class="line-numbers">50</span>    }
+<span class="line-numbers">51</span>}</div>
+        </div>
+
+        <div class="vscode-editor">
+            <div class="vscode-header">
+                <div class="vscode-tab">ContaBancaria.java</div>
+                <div class="vscode-tab active">TesteConta.java</div>
+            </div>
+            <div class="code-content"><span class="line-numbers">1</span><span class="comment">// Classe principal para testar</span>
+<span class="line-numbers">2</span><span class="keyword">public</span> <span class="keyword">class</span> <span class="class-name">TesteConta</span> {
+<span class="line-numbers">3</span>    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="method">main</span>(<span class="class-name">String</span>[] args) {
+<span class="line-numbers">4</span>        <span class="comment">// Criando dois objetos da classe ContaBancaria</span>
+<span class="line-numbers">5</span>        <span class="class-name">ContaBancaria</span> conta1 = <span class="keyword">new</span> <span class="class-name">ContaBancaria</span>();
+<span class="line-numbers">6</span>        conta1.titular = <span class="string">"João Silva"</span>;
+<span class="line-numbers">7</span>        conta1.numeroConta = <span class="string">"12345-6"</span>;
+<span class="line-numbers">8</span>        conta1.saldo = <span class="number">1000.0</span>;
+<span class="line-numbers">9</span>        conta1.ativa = <span class="keyword">true</span>;
+<span class="line-numbers">10</span>        
+<span class="line-numbers">11</span>        <span class="class-name">ContaBancaria</span> conta2 = <span class="keyword">new</span> <span class="class-name">ContaBancaria</span>();
+<span class="line-numbers">12</span>        conta2.titular = <span class="string">"Maria Santos"</span>;
+<span class="line-numbers">13</span>        conta2.numeroConta = <span class="string">"67890-1"</span>;
+<span class="line-numbers">14</span>        conta2.saldo = <span class="number">500.0</span>;
+<span class="line-numbers">15</span>        conta2.ativa = <span class="keyword">true</span>;
+<span class="line-numbers">16</span>        
+<span class="line-numbers">17</span>        <span class="comment">// Testando os métodos</span>
+<span class="line-numbers">18</span>        System.out.<span class="method">println</span>(<span class="string">"=== TESTE DOS MÉTODOS ==="</span>);
+<span class="line-numbers">19</span>        
+<span class="line-numbers">20</span>        <span class="comment">// Verificando status inicial</span>
+<span class="line-numbers">21</span>        conta1.<span class="method">verificarStatus</span>();
+<span class="line-numbers">22</span>        conta2.<span class="method">verificarStatus</span>();
+<span class="line-numbers">23</span>        
+<span class="line-numbers">24</span>        <span class="comment">// Testando depósito</span>
+<span class="line-numbers">25</span>        conta1.<span class="method">depositar</span>(<span class="number">200.0</span>);
+<span class="line-numbers">26</span>        
+<span class="line-numbers">27</span>        <span class="comment">// Testando saque</span>
+<span class="line-numbers">28</span>        conta2.<span class="method">sacar</span>(<span class="number">100.0</span>);
+<span class="line-numbers">29</span>        
+<span class="line-numbers">30</span>        <span class="comment">// Testando transferência</span>
+<span class="line-numbers">31</span>        conta1.<span class="method">transferir</span>(conta2, <span class="number">300.0</span>);
+<span class="line-numbers">32</span>        
+<span class="line-numbers">33</span>        <span class="comment">// Verificando status final</span>
+<span class="line-numbers">34</span>        conta1.<span class="method">verificarStatus</span>();
+<span class="line-numbers">35</span>        conta2.<span class="method">verificarStatus</span>();
+<span class="line-numbers">36</span>    }
+<span class="line-numbers">37</span>}</div>
+        </div>
+
+        <div class="highlight-box">
+            <h4>🎯 Pontos Importantes:</h4>
+            <ul>
+                <li><strong>Independência:</strong> Cada objeto (conta1 e conta2) mantém seus próprios valores</li>
+                <li><strong>Métodos com parâmetros:</strong> Alguns métodos recebem valores externos</li>
+                <li><strong>Validações:</strong> Verificações antes de executar ações</li>
+                <li><strong>Interação entre objetos:</strong> O método transferir() trabalha com dois objetos</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>📝 Instruções Gerais</h2>
+        
+        <div class="highlight-box">
+            <h4>✅ Para cada atividade, você deve:</h4>
+            <ul>
+                <li>Criar a classe com os atributos especificados</li>
+                <li>Implementar os 4 métodos solicitados</li>
+                <li>Criar uma classe Main para testar</li>
+                <li>Instanciar 2 objetos e testar todos os métodos</li>
+                <li>Usar System.out.println() para mostrar os resultados</li>
+            </ul>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>🎯 Critérios de Avaliação:</h4>
+            <ul>
+                <li>Implementação correta dos atributos e métodos</li>
+                <li>Funcionalidade dos métodos (lógica correta)</li>
+                <li>Teste adequado com 2 objetos</li>
+                <li>Uso correto da sintaxe Java</li>
+                <li>Organização e clareza do código</li>
+            </ul>
+        </div>
+        
+        <div class="highlight-box">
+            <h4>💡 Dicas Importantes:</h4>
+            <ul>
+                <li>Use validações nos métodos (ex: verificar se valores são válidos)</li>
+                <li>Teste situações diferentes para cada objeto</li>
+                <li>Comente partes importantes do código</li>
+                <li>Verifique se os objetos mantêm independência</li>
+                <li>Siga o padrão do exemplo da ContaBancaria</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>💻 Parte 2: Atividades Práticas</h2>
+        
+        <div class="activity-box">
+            <div class="activity-title">ATIVIDADE 1: Sistema de Loja de Celulares</div>
+            
+            <div class="activity-content">
+                <div class="specs">
+                    <h4>📱 Classe: Celular</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atributos</th>
+                                <th>Métodos</th>
+                                <th>Tarefa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li><code>marca</code> (String)</li>
+                                        <li><code>modelo</code> (String)</li>
+                                        <li><code>preco</code> (double)</li>
+                                        <li><code>disponivel</code> (boolean)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li><strong>vender()</strong> - Marca como indisponível se estava disponível</li>
+                                        <li><strong>aplicarDesconto(double porcentagem)</strong> - Aplica desconto no preço</li>
+                                        <li><strong>verificarDisponibilidade()</strong> - Informa se está disponível para venda</li>
+                                        <li><strong>mostrarInfo()</strong> - Exibe todas as informações do celular</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li>Crie 2 objetos da classe Celular</li>
+                                        <li>Teste todos os 4 métodos</li>
+                                        <li>Simule uma venda e aplicação de desconto</li>
+                                        <li>Crie uma classe Main para testar</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="answer-space"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="activity-box">
+            <div class="activity-title">ATIVIDADE 2: Sistema de Biblioteca Escolar</div>
+            
+            <div class="activity-content">
+                <div class="specs">
+                    <h4>📚 Classe: LivroEscolar</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atributos</th>
+                                <th>Métodos</th>
+                                <th>Tarefa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li><code>titulo</code> (String)</li>
+                                        <li><code>autor</code> (String)</li>
+                                        <li><code>emprestado</code> (boolean)</li>
+                                        <li><code>diasEmprestimo</code> (int)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li><strong>emprestar()</strong> - Marca como emprestado e define dias para 7</li>
+                                        <li><strong>devolver()</strong> - Marca como não emprestado e zera os dias</li>
+                                        <li><strong>verificarAtraso()</strong> - Se dias > 7, mostra mensagem de atraso</li>
+                                        <li><strong>renovarEmprestimo()</strong> - Adiciona mais 7 dias se já emprestado</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li>Crie 2 objetos da classe LivroEscolar</li>
+                                        <li>Teste todos os 4 métodos</li>
+                                        <li>Simule um empréstimo, renovação e verificação de atraso</li>
+                                        <li>Crie uma classe Main para testar</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="answer-space"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <div class="activity-box">
+            <div class="activity-title">ATIVIDADE 3: Sistema de Pizzaria</div>
+            
+            <div class="activity-content">
+                <div class="specs">
+                    <h4>🍕 Classe: Pizza</h4>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Atributos</th>
+                                <th>Métodos</th>
+                                <th>Tarefa</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li><code>sabor</code> (String)</li>
+                                        <li><code>tamanho</code> (String) // P, M, G</li>
+                                        <li><code>preco</code> (double)</li>
+                                        <li><code>entregue</code> (boolean)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li><strong>calcularPreco()</strong> - P=25, M=35, G=45 reais</li>
+                                        <li><strong>adicionarIngrediente(String ingrediente)</strong> - Adiciona 5 reais ao preço</li>
+                                        <li><strong>entregar()</strong> - Marca como entregue</li>
+                                        <li><strong>verificarStatus()</strong> - Mostra se está pronta ou entregue</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="inline-list">
+                                        <li>Crie 2 objetos da classe Pizza</li>
+                                        <li>Teste todos os 4 métodos</li>
+                                        <li>Simule pedido, adicionar ingrediente e entrega</li>
+                                        <li>Crie uma classe Main para testar</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="answer-space"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>Disciplina:</strong> Programação Orientada a Objetos | <strong>Linguagem:</strong> Java</p>
+    </div>
+</body>
+</html>
